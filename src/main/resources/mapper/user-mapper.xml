@@ -23,7 +23,7 @@
 
     <select id="selectByEmail" resultType="user">
         select <include refid="selectFields"></include>
-        fromm user
+        from user
         where email=#{email}
     </select>
 

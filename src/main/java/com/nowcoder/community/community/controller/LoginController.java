@@ -23,8 +23,10 @@ public class LoginController {
 
     @RequestMapping(path = "/register",method = RequestMethod.POST)
     public String register(Model model, User user){
-        Map<String,Object> map=userService.register(user);
+        System.out.println("222222");
+        Map<String,Object> map=userService.register(user); //在这一步就已经是发送邮件的内容
         if(map==null||map.isEmpty()){
+            System.out.println("11111111");
             model.addAttribute("msg","注册成功，我们已经向您的邮箱发送了一封激活邮件，请尽快激活");
             model.addAttribute("target","/index");
             return "/site/operate-result";
