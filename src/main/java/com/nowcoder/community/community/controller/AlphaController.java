@@ -186,4 +186,17 @@ public class AlphaController {
     * session:是javaee的标准，用于在服务端记录客户端信息
     * 数据存放在服务端更加安全，但是也会增加服务端的内存压力
     * */
+
+
+    /*
+    * ajax示例
+    * */
+    @RequestMapping(path = "/ajax",method = RequestMethod.POST)
+    @ResponseBody   //由于不是返回网页，而是返回自身的字符串，所以用这个注解
+    public String testAjax(String name,int age){
+        System.out.println(name);
+        System.out.println(age);
+        return CommunityUtil.getJSONString(0,"操作成功");
+    }
+
 }
