@@ -13,12 +13,13 @@ public class CommentService {
     @Autowired(required = false)
     private CommentMapper commentMapper;
 
-    public List<Comment> findCommentsByEntity(int entityType,int entityId,int offset,int limit){
-        return commentMapper.selectCommentsByEntity(entityType,entityId,offset,limit);
+    public List<Comment> findCommentsByEntity(int entityType, int entityId, int offset, int limit) {
+        return commentMapper.selectCommentsByEntity(entityType, entityId, offset, limit);
     }
 
-    public int findCommentCount(int entityType,int entityId){
-        return commentMapper.selectCountByEntity(entityType,entityId);
+    public int findCommentCount(int entityType, int entityId) {
+        return commentMapper.selectCountByEntity(entityType, entityId);
     }
 
 }
+

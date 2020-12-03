@@ -60,7 +60,9 @@ public class DiscussPostController implements CommunityConstant {
     @RequestMapping(path = "/detail/{discussPostId}",method = RequestMethod.GET)
     public String getDiscussPost(@PathVariable("discussPostId") int discussPostId, Model model, Page page ){
         //查询帖子
+        System.out.println("-------------11111-----------");
         DiscussPost post = discussPostService.findDiscussPostById(discussPostId);
+        System.out.println(post);
         model.addAttribute("post",post);
         //作者
         User user= userService.findUserById(post.getUserId());
@@ -69,7 +71,7 @@ public class DiscussPostController implements CommunityConstant {
         //评论分页信息
         page.setLimit(5);
         page.setPath("/discuss/detail/"+discussPostId);
-        page.setRows(post.getCommonCount());
+        page.setRows(post.getCommentCount());
 
         //评论：给帖子的评论
         //回复：给评论的评论
@@ -108,8 +110,15 @@ public class DiscussPostController implements CommunityConstant {
                 }
 
                 commentVo.put("replys",replyVoList);
+
+                //回复数量
+                int replyCount = commentService.findCommentCount(ENTITY_TYPE_COMMENT,comment.getId());
+                commentVo.put("replyCount",replyCount);
+
+                commentVoList.add(commentVo);
             }
         }
+        model.addAttribute("comments",commentVoList);
         return "/site/discuss-detail";
     }
 

@@ -2,7 +2,7 @@ package com.nowcoder.community.community.dao;
 
 import com.nowcoder.community.community.entity.Comment;
 import org.apache.ibatis.annotations.Mapper;
-
+import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Mapper
