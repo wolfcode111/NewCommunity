@@ -25,11 +25,11 @@ public class LikeController {
     @RequestMapping(path="/like",method = RequestMethod.POST)
     //由于是异步请求，所以要加上这个
     @ResponseBody
-    public String like(int entityType,int entityId){
+    public String like(int entityType,int entityId,int entityUserId){
         User user = hostHolder.getUser();  //获取当前的用户
 
         //点赞
-        likeService.like(user.getId(),entityType,entityId);
+        likeService.like(user.getId(),entityType,entityId,entityUserId);
         //数量
         long likeCount = likeService.findEntityLikeCount(entityType,entityId);
         //点赞的状态
