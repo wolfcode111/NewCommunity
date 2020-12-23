@@ -60,7 +60,7 @@ public class LikeController  implements CommunityConstant {
 
         return CommunityUtil.getJSONString(0,null,map);
         //返回Json的数据，因为是要做异步刷新
-
+       //为了提交到github上做的选择
     }
 
 
