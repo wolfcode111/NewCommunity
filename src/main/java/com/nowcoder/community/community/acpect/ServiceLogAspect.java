@@ -20,7 +20,6 @@ import java.util.Date;
 public class ServiceLogAspect {
     private static final Logger logger = LoggerFactory.getLogger(ServiceLogAspect.class);
 
-
     //不管返回值，所有的组件，所有的方法，所有的参数都使用下面
     @Pointcut("execution(* com.nowcoder.community.community.service.*.*(..))")
     public void pointcut(){
