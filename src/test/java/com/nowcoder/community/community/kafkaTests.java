@@ -30,8 +30,7 @@ public class kafkaTests {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
+        
     }
 }
 
