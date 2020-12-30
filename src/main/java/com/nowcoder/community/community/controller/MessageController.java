@@ -52,7 +52,7 @@ public class MessageController implements CommunityConstant {
                 map.put("unreadCount",messageService.findLetterUnreadCount(user.getId(), message.getConversationId()));
                 int targetId = user.getId() == message.getFromId() ? message.getToId() : message.getFromId();
                 map.put("target",userService.findUserById(targetId));
-
+                map.put("id",targetId);
                 conversations.add(map);
             }
         }
