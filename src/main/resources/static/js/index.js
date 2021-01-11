@@ -4,6 +4,15 @@ $(function(){
 
 function publish() {
 	$("#publishModal").modal("hide");
+	//
+	// //发送AJAX请求之前，将CSRF令牌设置到请求的消息头中
+	//如要使用这样的避免攻击就要在每个异步请求里都要写上这几行代码
+	//否则服务器就会认为被攻击了，就会阻止访问
+	// var token = $("meta[name='_csrf']").attr("content");
+	// var header = $("meta[name='_csrf_header']").attr("content");
+	// $(document).ajaxSend(function (e,xhr,options){
+	// 	xhr.setRequestHeader(header,token);
+	// });
 
 	//获取标题和内容
 	var title=$("#recipient-name").val();
