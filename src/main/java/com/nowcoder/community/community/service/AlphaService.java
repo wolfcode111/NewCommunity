@@ -6,8 +6,12 @@ import com.nowcoder.community.community.dao.UserMapper;
 import com.nowcoder.community.community.entity.DiscussPost;
 import com.nowcoder.community.community.entity.User;
 import com.nowcoder.community.community.util.CommunityUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -24,6 +28,9 @@ import java.util.Date;
 @Service
 //@Scope("prototype")  这个注解是让这个实例变成不是单例的
 public class AlphaService {
+
+    private static final Logger logger = LoggerFactory.getLogger(AlphaService.class);
+
     @Autowired
     private AlphaDao alphaDao;
 
@@ -121,6 +128,20 @@ public class AlphaService {
             }
         });
     }
+
+
+    // 让该方法在多线程环境下，被异步的调用
+    @Async    //这就是为什么使用@EnableAsync 的意义
+    public void executel(){
+        logger.debug("executel");
+    }
+
+    //这个方法会自动的每隔1000毫秒就去调用
+    @Scheduled(initialDelay = 10000,fixedRate = 1000)
+    public void execute2(){
+        logger.debug("execute2");
+    }
+
 
 
 }
