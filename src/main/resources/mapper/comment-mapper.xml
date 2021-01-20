@@ -42,4 +42,8 @@
         from  comment
         where id = #{id}
     </select>
+
+    <update id="updateScore">
+        update discuss_post set score = #{score} where id=#{id}
+    </update>
 </mapper>

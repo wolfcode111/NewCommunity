@@ -12,6 +12,7 @@ public class RedisKeyUtil {
     private static final  String PREFIX_USER="user";      //用户信息
     private static final  String PREFIX_UV = "uv";       //统计网站流量
     private static final  String PREFIX_DAU = "dau";     //日活跃用户
+    private static final String PREFIX_POST = "post";      //这个是用来计算帖子热度的
 
 
     //某个实体的赞
@@ -74,4 +75,8 @@ public class RedisKeyUtil {
     }
 
 
+    //帖子分数
+    public static String getPostScoreKey(){
+        return PREFIX_POST+SPLIT+"score";
+    }
 }

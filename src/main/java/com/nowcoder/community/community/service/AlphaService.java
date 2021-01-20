@@ -137,7 +137,7 @@ public class AlphaService {
     }
 
     //这个方法会自动的每隔1000毫秒就去调用
-    @Scheduled(initialDelay = 10000,fixedRate = 1000)
+//    @Scheduled(initialDelay = 10000,fixedRate = 1000)
     public void execute2(){
         logger.debug("execute2");
     }
