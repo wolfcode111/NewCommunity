@@ -35,7 +35,7 @@ public class EventConsumer implements CommunityConstant {
     @Autowired
     private ElasticsearchService elasticsearchService;
 
-    @Value("wk.image.command")
+    @Value("${wk.image.command}")
     private String wkImageCommand;
 
     @Value("${wk.image.storage}")
@@ -125,15 +125,18 @@ public class EventConsumer implements CommunityConstant {
         }
 
         String htmlUrl = (String) event.getData().get("htmlUrl");
-        String filaName = (String) event.getData().get("filaName");
+        String filaName = (String) event.getData().get("fileName");
         String suffix = (String) event.getData().get("suffix");
 
-        String cmd = wkImageCommand + "--quality 75"
+        System.out.println(filaName);
+        System.out.println(suffix);
+        String cmd = wkImageCommand + " --quality 75 "
                 +htmlUrl+" "+wkImageStorage+"/"+filaName+suffix;
         try {
             Runtime.getRuntime().exec(cmd);
+            logger.info("生成长图成功"+cmd);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("生成长图失败："+e.getMessage());
         }
     }
 }

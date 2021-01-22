@@ -10,12 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+@Controller
 public class ShareController implements CommunityConstant {
 
     private static final Logger logger = LoggerFactory.getLogger(ShareController.class);
@@ -43,9 +44,11 @@ public class ShareController implements CommunityConstant {
     @RequestMapping(path = "/share",method = RequestMethod.GET)
     @ResponseBody
     public String share(String htmlUrl){
+
+        System.out.println("----这里有没有输出-------");
         //文件名
         String filaName = CommunityUtil.generateUUID();
-
+         System.out.println(filaName);
         //异步生成长图
         Event event = new Event()
                 .setTopic(TOPIC_SHARE)   //这里设置了主题后，在消费事件里写上这样对于的名字
@@ -57,7 +60,6 @@ public class ShareController implements CommunityConstant {
         //返回访问路径
         Map<String,Object> map = new HashMap<>();
         map.put("shareUrl",domain+contextPath+"/share/image/"+filaName);
-
         return CommunityUtil.getJSONString(0,null,map);
     }
 
